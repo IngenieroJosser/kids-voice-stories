@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Video Animado para Niños - La Caja de los Tesoros
-Versión corregida y mejorada
+Versión con estilo Cartoon Network
 """
 
 import os
@@ -17,175 +17,237 @@ OUTPUT_VIDEO = "La_Caja_de_los_Tesoros_Video_Animado.mp4"
 WIDTH, HEIGHT = 1280, 720
 FPS = 24
 
-# Paleta de colores vibrantes para niños
+# Paleta de colores vibrantes al estilo Cartoon Network
 COLORES = {
-    "fondo": "#E8F4F8",  # Azul claro muy suave
-    "ana": "#FF6B8B",    # Rosa coral
-    "luis": "#4ECDC4",   # Turquesa
-    "caja": "#FFD166",   # Amarillo brillante
-    "texto": "#2C3E50",  # Azul oscuro
-    "acento1": "#FF6B6B",# Rojo coral
-    "acento2": "#6A0572",# Púrpura
-    "acento3": "#06D6A0",# Verde menta
-    "acento4": "#118AB2",# Azul
-    "acento5": "#F9C74F",# Amarillo
+    "fondo": "#E8F4F8",      # Azul claro muy suave
+    "ana_piel": "#FFD8B1",   # Piel clara
+    "ana_cabello": "#FF6B8B",# Rosa coral
+    "ana_ropa": "#FF6B6B",   # Rojo coral
+    "luis_piel": "#FFD8B1",  # Piel clara
+    "luis_cabello": "#4ECDC4",# Turquesa
+    "luis_ropa": "#118AB2",  # Azul
+    "caja": "#FFD166",       # Amarillo brillante
+    "texto": "#2C3E50",      # Azul oscuro
+    "acento1": "#FF6B6B",    # Rojo coral
+    "acento2": "#6A0572",    # Púrpura
+    "acento3": "#06D6A0",    # Verde menta
+    "acento4": "#118AB2",    # Azul
+    "acento5": "#F9C74F",    # Amarillo
 }
 
 # Función para convertir coordenadas a enteros
 def int_pos(x, y):
     return int(x), int(y)
 
-# Personajes y elementos (dibujos simples estilo caricatura)
+# Personajes y elementos (estilo Cartoon Network)
 def dibujar_ana(draw, x, y, tamaño=1.0):
-    """Dibuja a Ana (personaje femenino)"""
+    """Dibuja a Ana en estilo Cartoon Network"""
     x, y = int_pos(x, y)
-    # Cabeza
-    draw.ellipse([x-30*tamaño, y-40*tamaño, x+30*tamaño, y+20*tamaño], 
-                fill=COLORES["ana"], outline=COLORES["texto"], width=2)
     
-    # Ojos
-    draw.ellipse([x-15*tamaño, y-25*tamaño, x-5*tamaño, y-15*tamaño], 
-                fill="white", outline=COLORES["texto"], width=1)
-    draw.ellipse([x+5*tamaño, y-25*tamaño, x+15*tamaño, y-15*tamaño], 
-                fill="white", outline=COLORES["texto"], width=1)
+    # Cabello (forma exagerada, grande)
+    draw.ellipse([x-40*tamaño, y-50*tamaño, x+40*tamaño, y-10*tamaño], 
+                fill=COLORES["ana_cabello"], outline=COLORES["texto"], width=2)
     
-    # Pupilas
-    draw.ellipse([x-10*tamaño, y-20*tamaño, x-8*tamaño, y-18*tamaño], fill=COLORES["texto"])
-    draw.ellipse([x+8*tamaño, y-20*tamaño, x+10*tamaño, y-18*tamaño], fill=COLORES["texto"])
+    # Cara (forma ovalada, grande)
+    draw.ellipse([x-35*tamaño, y-40*tamaño, x+35*tamaño, y+20*tamaño], 
+                fill=COLORES["ana_piel"], outline=COLORES["texto"], width=2)
     
-    # Sonrisa
-    draw.arc([x-15*tamaño, y-15*tamaño, x+15*tamaño, y+5*tamaño], 
-             start=0, end=180, fill=COLORES["texto"], width=2)
+    # Ojos grandes (estilo cartoon)
+    # Ojo izquierdo
+    draw.ellipse([x-25*tamaño, y-20*tamaño, x-5*tamaño, y+5*tamaño], 
+                fill="white", outline=COLORES["texto"], width=2)
+    draw.ellipse([x-20*tamaño, y-15*tamaño, x-10*tamaño, y-5*tamaño], 
+                fill=COLORES["texto"])
     
-    # Vestido
-    draw.polygon([(x-25*tamaño, y+20*tamaño), (x+25*tamaño, y+20*tamaño), 
-                 (x+20*tamaño, y+60*tamaño), (x-20*tamaño, y+60*tamaño)], 
-                fill=COLORES["acento1"], outline=COLORES["texto"], width=2)
+    # Ojo derecho
+    draw.ellipse([x+5*tamaño, y-20*tamaño, x+25*tamaño, y+5*tamaño], 
+                fill="white", outline=COLORES["texto"], width=2)
+    draw.ellipse([x+10*tamaño, y-15*tamaño, x+20*tamaño, y-5*tamaño], 
+                fill=COLORES["texto"])
     
-    # Brazos
-    draw.line([x-25*tamaño, y+30*tamaño, x-40*tamaño, y+20*tamaño], 
-              fill=COLORES["ana"], width=3)
-    draw.line([x+25*tamaño, y+30*tamaño, x+40*tamaño, y+20*tamaño], 
-              fill=COLORES["ana"], width=3)
+    # Sonrisa grande y expresiva
+    draw.arc([x-20*tamaño, y+5*tamaño, x+20*tamaño, y+25*tamaño], 
+             start=0, end=180, fill=COLORES["texto"], width=3)
     
-    # Piernas
-    draw.line([x-10*tamaño, y+60*tamaño, x-15*tamaño, y+80*tamaño], 
-              fill=COLORES["ana"], width=3)
-    draw.line([x+10*tamaño, y+60*tamaño, x+15*tamaño, y+80*tamaño], 
-              fill=COLORES["ana"], width=3)
+    # Vestido (forma triangular exagerada)
+    draw.polygon([(x-30*tamaño, y+20*tamaño), (x+30*tamaño, y+20*tamaño), 
+                 (x+15*tamaño, y+80*tamaño), (x-15*tamaño, y+80*tamaño)], 
+                fill=COLORES["ana_ropa"], outline=COLORES["texto"], width=2)
+    
+    # Brazos (líneas curvas)
+    draw.arc([x-50*tamaño, y+20*tamaño, x-10*tamaño, y+50*tamaño], 
+             start=0, end=180, fill=COLORES["ana_piel"], width=3)
+    draw.arc([x+10*tamaño, y+20*tamaño, x+50*tamaño, y+50*tamaño], 
+             start=0, end=180, fill=COLORES["ana_piel"], width=3)
+    
+    # Piernas (cortas y gruesas)
+    draw.line([x-10*tamaño, y+80*tamaño, x-15*tamaño, y+100*tamaño], 
+              fill=COLORES["ana_piel"], width=4)
+    draw.line([x+10*tamaño, y+80*tamaño, x+15*tamaño, y+100*tamaño], 
+              fill=COLORES["ana_piel"], width=4)
 
 def dibujar_luis(draw, x, y, tamaño=1.0):
-    """Dibuja a Luis (personaje masculino)"""
+    """Dibuja a Luis en estilo Cartoon Network"""
     x, y = int_pos(x, y)
-    # Cabeza
-    draw.ellipse([x-30*tamaño, y-40*tamaño, x+30*tamaño, y+20*tamaño], 
-                fill=COLORES["luis"], outline=COLORES["texto"], width=2)
     
-    # Ojos
-    draw.ellipse([x-15*tamaño, y-25*tamaño, x-5*tamaño, y-15*tamaño], 
-                fill="white", outline=COLORES["texto"], width=1)
-    draw.ellipse([x+5*tamaño, y-25*tamaño, x+15*tamaño, y-15*tamaño], 
-                fill="white", outline=COLORES["texto"], width=1)
+    # Cabello (despeinado, estilo cartoon)
+    draw.ellipse([x-40*tamaño, y-60*tamaño, x+40*tamaño, y-20*tamaño], 
+                fill=COLORES["luis_cabello"], outline=COLORES["texto"], width=2)
     
-    # Pupilas
-    draw.ellipse([x-10*tamaño, y-20*tamaño, x-8*tamaño, y-18*tamaño], fill=COLORES["texto"])
-    draw.ellipse([x+8*tamaño, y-20*tamaño, x+10*tamaño, y-18*tamaño], fill=COLORES["texto"])
+    # Picos de cabello (característico de cartoon)
+    for i in range(3):
+        offset = -30 + i * 30
+        draw.polygon([(x+offset*tamaño, y-60*tamaño), 
+                     (x+(offset-10)*tamaño, y-80*tamaño), 
+                     (x+(offset+10)*tamaño, y-80*tamaño)], 
+                    fill=COLORES["luis_cabello"], outline=COLORES["texto"], width=1)
     
-    # Sonrisa
-    draw.arc([x-15*tamaño, y-15*tamaño, x+15*tamaño, y+5*tamaño], 
-             start=0, end=180, fill=COLORES["texto"], width=2)
+    # Cara
+    draw.ellipse([x-35*tamaño, y-40*tamaño, x+35*tamaño, y+20*tamaño], 
+                fill=COLORES["luis_piel"], outline=COLORES["texto"], width=2)
     
-    # Camisa
-    draw.polygon([(x-25*tamaño, y+20*tamaño), (x+25*tamaño, y+20*tamaño), 
-                 (x+20*tamaño, y+60*tamaño), (x-20*tamaño, y+60*tamaño)], 
-                fill=COLORES["acento4"], outline=COLORES["texto"], width=2)
+    # Ojos grandes
+    # Ojo izquierdo
+    draw.ellipse([x-25*tamaño, y-20*tamaño, x-5*tamaño, y+5*tamaño], 
+                fill="white", outline=COLORES["texto"], width=2)
+    draw.ellipse([x-20*tamaño, y-15*tamaño, x-10*tamaño, y-5*tamaño], 
+                fill=COLORES["texto"])
     
-    # Brazos
-    draw.line([x-25*tamaño, y+30*tamaño, x-40*tamaño, y+20*tamaño], 
-              fill=COLORES["luis"], width=3)
-    draw.line([x+25*tamaño, y+30*tamaño, x+40*tamaño, y+20*tamaño], 
-              fill=COLORES["luis"], width=3)
+    # Ojo derecho
+    draw.ellipse([x+5*tamaño, y-20*tamaño, x+25*tamaño, y+5*tamaño], 
+                fill="white", outline=COLORES["texto"], width=2)
+    draw.ellipse([x+10*tamaño, y-15*tamaño, x+20*tamaño, y-5*tamaño], 
+                fill=COLORES["texto"])
     
-    # Piernas
-    draw.line([x-10*tamaño, y+60*tamaño, x-15*tamaño, y+80*tamaño], 
-              fill=COLORES["luis"], width=3)
-    draw.line([x+10*tamaño, y+60*tamaño, x+15*tamaño, y+80*tamaño], 
-              fill=COLORES["luis"], width=3)
+    # Sonrisa grande
+    draw.arc([x-20*tamaño, y+5*tamaño, x+20*tamaño, y+25*tamaño], 
+             start=0, end=180, fill=COLORES["texto"], width=3)
+    
+    # Camiseta (rectangular con detalles)
+    draw.rectangle([x-30*tamaño, y+20*tamaño, x+30*tamaño, y+70*tamaño], 
+                  fill=COLORES["luis_ropa"], outline=COLORES["texto"], width=2)
+    
+    # Brazos (curvos y expresivos)
+    draw.arc([x-50*tamaño, y+20*tamaño, x-10*tamaño, y+50*tamaño], 
+             start=0, end=180, fill=COLORES["luis_piel"], width=4)
+    draw.arc([x+10*tamaño, y+20*tamaño, x+50*tamaño, y+50*tamaño], 
+             start=0, end=180, fill=COLORES["luis_piel"], width=4)
+    
+    # Piernas (cortas y gruesas)
+    draw.line([x-15*tamaño, y+70*tamaño, x-20*tamaño, y+100*tamaño], 
+              fill=COLORES["luis_piel"], width=5)
+    draw.line([x+15*tamaño, y+70*tamaño, x+20*tamaño, y+100*tamaño], 
+              fill=COLORES["luis_piel"], width=5)
 
 def dibujar_caja(draw, x, y, tamaño=1.0, color=None):
-    """Dibuja una caja de tesoros"""
+    """Dibuja una caja de tesoros con estilo cartoon"""
     x, y = int_pos(x, y)
     color = color or COLORES["caja"]
     
-    # Caja principal
-    draw.rectangle([x-40*tamaño, y-30*tamaño, x+40*tamaño, y+30*tamaño], 
-                  fill=color, outline=COLORES["texto"], width=2)
+    # Caja principal con perspectiva exagerada
+    draw.polygon([(x-40*tamaño, y-20*tamaño), (x+40*tamaño, y-20*tamaño),
+                 (x+30*tamaño, y+30*tamaño), (x-30*tamaño, y+30*tamaño)],
+                fill=color, outline=COLORES["texto"], width=3)
     
-    # Líneas para efecto 3D
-    draw.line([x-40*tamaño, y-30*tamaño, x-20*tamaño, y-40*tamaño], 
-              fill=COLORES["texto"], width=2)
-    draw.line([x+40*tamaño, y-30*tamaño, x+20*tamaño, y-40*tamaño], 
-              fill=COLORES["texto"], width=2)
-    draw.line([x-20*tamaño, y-40*tamaño, x+20*tamaño, y-40*tamaño], 
-              fill=COLORES["texto"], width=2)
+    # Tapa de la caja
+    draw.polygon([(x-40*tamaño, y-20*tamaño), (x-20*tamaño, y-40*tamaño),
+                 (x+20*tamaño, y-40*tamaño), (x+40*tamaño, y-20*tamaño)],
+                fill=color, outline=COLORES["texto"], width=3)
     
-    # Brillo (efecto de tesoro) - CORREGIDO: usar enteros
-    for i in range(5):
-        rx = random.randint(int(x-30), int(x+30))
-        ry = random.randint(int(y-20), int(y+20))
-        r = random.randint(3, 8)
+    # Brillo (efecto de tesoro) - más exagerado
+    for i in range(8):
+        rx = random.randint(int(x-30*tamaño), int(x+30*tamaño))
+        ry = random.randint(int(y-15*tamaño), int(y+25*tamaño))
+        r = random.randint(5, 12)
         draw.ellipse([rx-r, ry-r, rx+r, ry+r], fill="white")
+        # Rayos de luz
+        for j in range(4):
+            angle = j * 90
+            length = random.randint(10, 20)
+            draw.line([rx, ry, 
+                      rx + length * np.cos(np.radians(angle)),
+                      ry + length * np.sin(np.radians(angle))],
+                     fill="white", width=2)
 
 def dibujar_nino(draw, x, y, color_ropa, tamaño=1.0):
-    """Dibuja un niño genérico"""
+    """Dibuja un niño genérico en estilo cartoon"""
     x, y = int_pos(x, y)
+    
+    # Cabello (forma simple)
+    draw.ellipse([x-25*tamaño, y-45*tamaño, x+25*tamaño, y-15*tamaño], 
+                fill="#6A4C93", outline=COLORES["texto"], width=2)
+    
     # Cabeza
     draw.ellipse([x-25*tamaño, y-35*tamaño, x+25*tamaño, y+15*tamaño], 
                 fill="#FFD8B1", outline=COLORES["texto"], width=2)
     
-    # Ojos
-    draw.ellipse([x-12*tamaño, y-20*tamaño, x-5*tamaño, y-13*tamaño], 
-                fill="white", outline=COLORES["texto"], width=1)
-    draw.ellipse([x+5*tamaño, y-20*tamaño, x+12*tamaño, y-13*tamaño], 
-                fill="white", outline=COLORES["texto"], width=1)
+    # Ojos grandes (estilo cartoon)
+    draw.ellipse([x-15*tamaño, y-20*tamaño, x-5*tamaño, y-5*tamaño], 
+                fill="white", outline=COLORES["texto"], width=2)
+    draw.ellipse([x+5*tamaño, y-20*tamaño, x+15*tamaño, y-5*tamaño], 
+                fill="white", outline=COLORES["texto"], width=2)
     
     # Pupilas
-    draw.ellipse([x-8*tamaño, y-16*tamaño, x-6*tamaño, y-14*tamaño], fill=COLORES["texto"])
-    draw.ellipse([x+6*tamaño, y-16*tamaño, x+8*tamaño, y-14*tamaño], fill=COLORES["texto"])
+    draw.ellipse([x-10*tamaño, y-15*tamaño, x-8*tamaño, y-10*tamaño], fill=COLORES["texto"])
+    draw.ellipse([x+8*tamaño, y-15*tamaño, x+10*tamaño, y-10*tamaño], fill=COLORES["texto"])
     
-    # Sonrisa
-    draw.arc([x-10*tamaño, y-10*tamaño, x+10*tamaño, y+5*tamaño], 
-             start=0, end=180, fill=COLORES["texto"], width=2)
+    # Sonrisa exagerada
+    draw.arc([x-15*tamaño, y-5*tamaño, x+15*tamaño, y+15*tamaño], 
+             start=0, end=180, fill=COLORES["texto"], width=3)
     
-    # Ropa
-    draw.polygon([(x-20*tamaño, y+15*tamaño), (x+20*tamaño, y+15*tamaño), 
-                 (x+15*tamaño, y+50*tamaño), (x-15*tamaño, y+50*tamaño)], 
-                fill=color_ropa, outline=COLORES["texto"], width=2)
+    # Ropa (estilo cartoon)
+    draw.rectangle([x-20*tamaño, y+15*tamaño, x+20*tamaño, y+60*tamaño], 
+                  fill=color_ropa, outline=COLORES["texto"], width=2)
     
-    # Brazos
-    draw.line([x-20*tamaño, y+25*tamaño, x-35*tamaño, y+15*tamaño], 
-              fill="#FFD8B1", width=3)
-    draw.line([x+20*tamaño, y+25*tamaño, x+35*tamaño, y+15*tamaño], 
-              fill="#FFD8B1", width=3)
+    # Brazos (curvos)
+    draw.arc([x-35*tamaño, y+20*tamaño, x-5*tamaño, y+40*tamaño], 
+             start=0, end=180, fill="#FFD8B1", width=4)
+    draw.arc([x+5*tamaño, y+20*tamaño, x+35*tamaño, y+40*tamaño], 
+             start=0, end=180, fill="#FFD8B1", width=4)
     
-    # Piernas
-    draw.line([x-8*tamaño, y+50*tamaño, x-12*tamaño, y+65*tamaño], 
-              fill="#FFD8B1", width=3)
-    draw.line([x+8*tamaño, y+50*tamaño, x+12*tamaño, y+65*tamaño], 
-              fill="#FFD8B1", width=3)
+    # Piernas (cortas y gruesas)
+    draw.line([x-10*tamaño, y+60*tamaño, x-15*tamaño, y+80*tamaño], 
+              fill="#FFD8B1", width=5)
+    draw.line([x+10*tamaño, y+60*tamaño, x+15*tamaño, y+80*tamaño], 
+              fill="#FFD8B1", width=5)
 
 def crear_fondo_degradado(width, height):
     """Crea un fondo con degradado de colores"""
     base = Image.new('RGB', (width, height), COLORES["fondo"])
     draw = ImageDraw.Draw(base)
     
-    # Dibujar formas decorativas en el fondo
-    for _ in range(20):
+    # Dibujar formas decorativas en el fondo (estilo cartoon)
+    formas_colores = [COLORES["acento1"], COLORES["acento2"], 
+                      COLORES["acento3"], COLORES["acento4"], COLORES["acento5"]]
+    
+    for _ in range(25):
         x, y = random.randint(0, width), random.randint(0, height)
-        r = random.randint(10, 50)
-        color = random.choice([COLORES["acento1"], COLORES["acento2"], 
-                              COLORES["acento3"], COLORES["acento4"], COLORES["acento5"]])
-        draw.ellipse([x-r, y-r, x+r, y+r], fill=color, outline=None)
+        r = random.randint(20, 80)
+        color = random.choice(formas_colores)
+        
+        # Formas variadas (círculos, estrellas, etc.)
+        forma = random.choice(["circulo", "estrella", "rectangulo"])
+        
+        if forma == "circulo":
+            draw.ellipse([x-r, y-r, x+r, y+r], fill=color, outline=None)
+        elif forma == "estrella":
+            # Dibujar una estrella simple
+            radio_externo = r
+            radio_interno = r * 0.5
+            puntos = []
+            for i in range(10):
+                angulo = np.pi/5 * i
+                radio = radio_externo if i % 2 == 0 else radio_interno
+                puntos.append((x + radio * np.cos(angulo), 
+                              y + radio * np.sin(angulo)))
+            draw.polygon(puntos, fill=color, outline=None)
+        else:  # rectangulo
+            w, h = random.randint(30, 100), random.randint(30, 100)
+            rotacion = random.randint(0, 45)
+            # Crear un rectángulo rotado
+            rect = Image.new('RGBA', (w, h), color)
+            rect_rot = rect.rotate(rotacion, expand=True)
+            base.paste(rect_rot, (x - rect_rot.width//2, y - rect_rot.height//2), rect_rot)
     
     return base
 
@@ -194,29 +256,50 @@ def crear_imagen_escena(escena_num, texto_principal, texto_secundario=None, elem
     img = crear_fondo_degradado(WIDTH, HEIGHT)
     draw = ImageDraw.Draw(img)
     
-    # Intentar cargar fuentes
+    # Intentar cargar fuentes más cartoon
     try:
-        titulo_font = ImageFont.truetype("arialbd.ttf", 50)
-        texto_font = ImageFont.truetype("arial.ttf", 30)
+        # Intentar con fuentes más divertidas
+        titulo_font = ImageFont.truetype("comicbd.ttf", 60)  # Comic Sans Bold
     except:
-        titulo_font = ImageFont.load_default()
-        texto_font = ImageFont.load_default()
+        try:
+            titulo_font = ImageFont.truetype("arialbd.ttf", 50)
+        except:
+            titulo_font = ImageFont.load_default()
     
-    # Dibujar texto principal
+    try:
+        texto_font = ImageFont.truetype("comic.ttf", 36)  # Comic Sans regular
+    except:
+        try:
+            texto_font = ImageFont.truetype("arial.ttf", 30)
+        except:
+            texto_font = ImageFont.load_default()
+    
+    # Dibujar texto principal con contorno
+    bbox = draw.textbbox((0, 0), texto_principal, font=titulo_font)
+    text_width = bbox[2] - bbox[0]
+    
+    # Texto con contorno (estilo cartoon)
+    for dx, dy in [(-2,-2), (-2,2), (2,-2), (2,2)]:
+        draw.text((WIDTH/2 + dx, 100 + dy), texto_principal, 
+                 fill="white", font=titulo_font, anchor="mm")
+    
     draw.text((WIDTH/2, 100), texto_principal, fill=COLORES["texto"], 
               font=titulo_font, anchor="mm")
     
     # Dibujar texto secundario si existe
     if texto_secundario:
-        draw.text((WIDTH/2, 160), texto_secundario, fill=COLORES["texto"], 
+        for dx, dy in [(-1,-1), (-1,1), (1,-1), (1,1)]:
+            draw.text((WIDTH/2 + dx, 170 + dy), texto_secundario, 
+                     fill="white", font=texto_font, anchor="mm")
+        draw.text((WIDTH/2, 170), texto_secundario, fill=COLORES["texto"], 
                   font=texto_font, anchor="mm")
     
     # Dibujar elementos según la escena
     if escena_num == 1:
         # Escena 1: Introducción
-        dibujar_ana(draw, WIDTH/2 - 200, HEIGHT/2)
-        dibujar_luis(draw, WIDTH/2 + 200, HEIGHT/2)
-        dibujar_caja(draw, WIDTH/2, HEIGHT/2, tamaño=1.5)
+        dibujar_ana(draw, WIDTH/2 - 200, HEIGHT/2 + 50, tamaño=1.2)
+        dibujar_luis(draw, WIDTH/2 + 200, HEIGHT/2 + 50, tamaño=1.2)
+        dibujar_caja(draw, WIDTH/2, HEIGHT/2 - 50, tamaño=1.8)
         
     elif escena_num == 2:
         # Escena 2: Objetivos
@@ -226,9 +309,12 @@ def crear_imagen_escena(escena_num, texto_principal, texto_secundario=None, elem
             "Fortalecimiento de la identidad"
         ]
         for i, objetivo in enumerate(objetivos):
-            y_pos = HEIGHT/2 - 50 + i * 60
-            draw.text((WIDTH/2, y_pos), f"• {objetivo}", fill=COLORES["texto"], 
-                      font=texto_font, anchor="mm")
+            y_pos = HEIGHT/2 - 50 + i * 70
+            # Dibujar viñetas con estilo cartoon
+            draw.ellipse([WIDTH/2 - 200, y_pos-10, WIDTH/2 - 180, y_pos+10], 
+                        fill=COLORES["acento1"])
+            draw.text((WIDTH/2 - 170, y_pos), objetivo, fill=COLORES["texto"], 
+                      font=texto_font, anchor="lm")
             
     elif escena_num == 3:
         # Escena 3: Materiales
@@ -240,16 +326,20 @@ def crear_imagen_escena(escena_num, texto_principal, texto_secundario=None, elem
             "Bolsa de objetos"
         ]
         for i, material in enumerate(materiales):
-            y_pos = HEIGHT/2 - 100 + i * 40
-            draw.text((WIDTH/2, y_pos), f"• {material}", fill=COLORES["texto"], 
-                      font=texto_font, anchor="mm")
+            y_pos = HEIGHT/2 - 100 + i * 50
+            # Viñetas con diferentes colores
+            color_viñeta = COLORES[f"acento{(i % 5) + 1}"]
+            draw.ellipse([WIDTH/2 - 220, y_pos-8, WIDTH/2 - 200, y_pos+8], 
+                        fill=color_viñeta)
+            draw.text((WIDTH/2 - 190, y_pos), material, fill=COLORES["texto"], 
+                      font=texto_font, anchor="lm")
             
     elif escena_num == 4:
         # Escena 4: Paso 1 - Decorar
-        dibujar_nino(draw, WIDTH/2 - 150, HEIGHT/2, COLORES["acento1"])
-        dibujar_nino(draw, WIDTH/2 + 150, HEIGHT/2, COLORES["acento3"])
-        dibujar_caja(draw, WIDTH/2, HEIGHT/2, tamaño=1.2)
-        draw.text((WIDTH/2, HEIGHT/2 + 100), "Crear un espacio seguro", 
+        dibujar_nino(draw, WIDTH/2 - 150, HEIGHT/2 + 30, COLORES["acento1"], tamaño=1.1)
+        dibujar_nino(draw, WIDTH/2 + 150, HEIGHT/2 + 30, COLORES["acento3"], tamaño=1.1)
+        dibujar_caja(draw, WIDTH/2, HEIGHT/2 - 50, tamaño=1.5)
+        draw.text((WIDTH/2, HEIGHT/2 + 120), "Crear un espacio seguro", 
                   fill=COLORES["texto"], font=texto_font, anchor="mm")
         
     elif escena_num == 5:
@@ -260,23 +350,25 @@ def crear_imagen_escena(escena_num, texto_principal, texto_secundario=None, elem
             "Sueño futuro"
         ]
         for i, tesoro in enumerate(tesoros):
-            y_pos = HEIGHT/2 - 50 + i * 60
-            draw.text((WIDTH/2, y_pos), f"• {tesoro}", fill=COLORES["texto"], 
-                      font=texto_font, anchor="mm")
+            y_pos = HEIGHT/2 - 50 + i * 80
+            # Dibujar cofres pequeños como viñetas
+            dibujar_caja(draw, WIDTH/2 - 200, y_pos, tamaño=0.5, color=COLORES[f"acento{i+1}"])
+            draw.text((WIDTH/2 - 170, y_pos), tesoro, fill=COLORES["texto"], 
+                      font=texto_font, anchor="lm")
             
     elif escena_num == 6:
         # Escena 6: Paso 3 - Elegir objetos
-        objetos = ["Piedra", "Botón", "Tela", "Hoja"]
+        objetos = ["Piedra", "Botón", "Tela", "Hoja", "Foto"]
         for i, objeto in enumerate(objetos):
-            x_pos = WIDTH/2 - 150 + i * 100
-            dibujar_caja(draw, x_pos, HEIGHT/2, tamaño=0.7, color=COLORES[f"acento{i+1}"])
-            draw.text((x_pos, HEIGHT/2 + 50), objeto, fill=COLORES["texto"], 
+            x_pos = WIDTH/2 - 200 + i * 100
+            dibujar_caja(draw, x_pos, HEIGHT/2 - 30, tamaño=0.8, color=COLORES[f"acento{i+1}"])
+            draw.text((x_pos, HEIGHT/2 + 30), objeto, fill=COLORES["texto"], 
                       font=texto_font, anchor="mm")
             
     elif escena_num == 7:
         # Escena 7: Paso 4 - Compartir
-        dibujar_nino(draw, WIDTH/2, HEIGHT/2 - 50, COLORES["acento2"])
-        dibujar_caja(draw, WIDTH/2, HEIGHT/2 + 50, tamaño=0.8)
+        dibujar_nino(draw, WIDTH/2, HEIGHT/2 - 30, COLORES["acento2"], tamaño=1.2)
+        dibujar_caja(draw, WIDTH/2, HEIGHT/2 + 50, tamaño=1.0)
         draw.text((WIDTH/2, HEIGHT/2 + 120), "Nunca debe ser obligatorio", 
                   fill=COLORES["texto"], font=texto_font, anchor="mm")
         
@@ -288,16 +380,27 @@ def crear_imagen_escena(escena_num, texto_principal, texto_secundario=None, elem
             "Resignificación de experiencias"
         ]
         for i, beneficio in enumerate(beneficios):
-            y_pos = HEIGHT/2 - 50 + i * 60
-            draw.text((WIDTH/2, y_pos), f"• {beneficio}", fill=COLORES["texto"], 
-                      font=texto_font, anchor="mm")
+            y_pos = HEIGHT/2 - 50 + i * 70
+            # Dibujar estrellas como viñetas
+            draw.regular_polygon((WIDTH/2 - 200, y_pos, 15), n_sides=5, 
+                                fill=COLORES[f"acento{i+1}"], outline=COLORES["texto"])
+            draw.text((WIDTH/2 - 170, y_pos), beneficio, fill=COLORES["texto"], 
+                      font=texto_font, anchor="lm")
             
     elif escena_num == 9:
         # Escena 9: Cierre
-        dibujar_caja(draw, WIDTH/2, HEIGHT/2, tamaño=1.5)
-        draw.text((WIDTH/2, HEIGHT/2 - 100), "Cada niño es único…", 
+        dibujar_caja(draw, WIDTH/2, HEIGHT/2 - 50, tamaño=2.0)
+        
+        # Texto con efecto cartoon
+        for dx, dy in [(-3,-3), (-3,3), (3,-3), (3,3)]:
+            draw.text((WIDTH/2 + dx, HEIGHT/2 - 120 + dy), "Cada niño es único…", 
+                     fill="white", font=titulo_font, anchor="mm")
+            draw.text((WIDTH/2 + dx, HEIGHT/2 - 60 + dy), "y su tesoro también", 
+                     fill="white", font=texto_font, anchor="mm")
+        
+        draw.text((WIDTH/2, HEIGHT/2 - 120), "Cada niño es único…", 
                   fill=COLORES["texto"], font=titulo_font, anchor="mm")
-        draw.text((WIDTH/2, HEIGHT/2 - 50), "y su tesoro también", 
+        draw.text((WIDTH/2, HEIGHT/2 - 60), "y su tesoro también", 
                   fill=COLORES["texto"], font=texto_font, anchor="mm")
     
     # Guardar imagen
